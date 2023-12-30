@@ -1,3 +1,5 @@
+// @ts-ignore
+
 "use client";
 import React from "react";
 import { data } from "../(data)/data";
@@ -103,9 +105,14 @@ const HomePage  = () => {
               >
                 <thead>
                   {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
+                    <tr key={
+                      headerGroup.getHeaderGroupProps().key
+                    } {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((header) => (
                         <th
+                          key={
+                            header.getHeaderProps(header.getSortByToggleProps()).key
+                          }
                           {...header.getHeaderProps(header.getSortByToggleProps())}
                           className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                         >
@@ -119,10 +126,13 @@ const HomePage  = () => {
                   {page.map((row) => {
                     prepareRow(row);
                     return (
-                      <tr {...row.getRowProps()} className="hover:bg-gray-200">
+                      <tr {...row.getRowProps()} className="hover:bg-gray-200" key={
+                        row.getRowProps().key
+                      }>
                         {row.cells.map((cell) => {
                           return (
                             <td
+                          key={cell.getCellProps().key}
                               {...cell.getCellProps()}
                               className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 "
                             >
